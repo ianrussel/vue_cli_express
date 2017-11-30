@@ -1,0 +1,12 @@
+//fonts
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,300,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+//bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+//sweetalert
+@import "node_modules/sweetalert2/src/sweetalert2";
+
+//tansition VueRouter
+@import "components/router_transition";
