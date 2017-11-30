@@ -1,21 +1,19 @@
 <template>
-    <div class="wrapper">
-        <div class="animated fadeIn">
-            <b-row>
-                <b-col cols="12">
-                    <b-card header="Cheaters">
-                        <p v-for="cheat in cheats" :key="cheat._id"><router-link :to="{path: 'components/cheater'}" v-on:click.native="click">{{ cheat }}</router-link></p>
-                    </b-card>
-                </b-col>
-            </b-row>
-            <!-- <div class="row text-center text-lg-left">
-                <div class="col-lg-3 col-md-4 col-xs-6" v-for="cheat in cheats" :key="cheat._id">
-                    <a href="#" class="d-block mb-4 h-100">
-                        <img class="img-fluid img-thumbnail" src="" alt="">{{cheat}}
-                    </a>
-                </div>
-            </div> -->
-        </div>
+    <div class="animated fadeIn">
+        <b-card no-body class="card-default">
+            <div slot="header">
+                <i class="fa fa-picture-o"></i> Cheaters
+            </div>
+            <b-card-body>
+                <b-row class="text-center">
+                    <b-col cols="6" sm="4" md="3" v-for="cheat in cheats" :key="cheat._id">
+                        <i class="icon-emotsmile icons font-4xl d-block mt-2"></i><router-link :to="{path: 'components/cheater'}" v-on:click.native="click">
+                            {{ cheat }}
+                        </router-link>
+                    </b-col>
+                </b-row><!--/.row-->
+            </b-card-body>
+        </b-card>
     </div>
 </template>
 
