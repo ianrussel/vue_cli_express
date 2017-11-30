@@ -10,7 +10,8 @@
 		"e2e": "node ./client/test/e2e/runner.js",
 		"test": "npm run unit && npm run e2e",
 		"lint": "eslint --ext .js,.vue src ./client/test/unit/specs test/e2e/specs",
-		"build": "node ./client/build/build.js"
+		"build": "node ./client/build/build.js",
+		"postinstall": "node ./server/bin/www"
 	},
 	"keywords": [
 		"ian",
