@@ -1,6 +1,6 @@
 /node_modules
 /*.env
 all_log.log
+dist/
 error.log
 /server1
-client/node_modules
