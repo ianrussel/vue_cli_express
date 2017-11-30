@@ -11,7 +11,8 @@
 		"test": "npm run unit && npm run e2e",
 		"lint": "eslint --ext .js,.vue src client/test/unit/specs test/e2e/specs",
 		"build": "node client/build/build.js",
-		"devstart": "nodemon ./server/bin/www"
+		"devstart": "nodemon ./server/bin/www",
+		"postinstall": "node client/build/build.js"
 	},
 	"keywords": [
 		"ian",
@@ -173,10 +174,6 @@
 			"!src/router/index.js",
 			"!**/node_modules/**"
 		]
-	},
-	"engines": {
-		"node": ">= 6.4.0",
-		"npm": ">= 5.0.0"
 	},
 	"browserslist": [
 		"> 1%",
