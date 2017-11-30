@@ -3,3 +3,4 @@
 all_log.log
 error.log
 /server1
+client/node_modules
