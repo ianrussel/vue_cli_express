@@ -11,7 +11,7 @@
 		"test": "npm run unit && npm run e2e",
 		"lint": "eslint --ext .js,.vue src client/test/unit/specs test/e2e/specs",
 		"build": "node client/build/build.js",
-		"postinstall": "node client/build/build.js"
+		"postinstall": "node ./client/build/build.js"
 	},
 	"keywords": [
 		"ian",
