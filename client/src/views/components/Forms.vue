@@ -33,7 +33,7 @@
                         label="Select"
                         :label-cols="1"
                         :horizontal="true">
-                        <select class="form-control" v-model="name" :required="true">
+                        <select class="form-control" v-model="name">
                             <option v-for="(item,index) in cheats" v-bind:value="item" :key="item._id">
                                 {{ item }}
                             </option>
