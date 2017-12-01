@@ -1,0 +1,8 @@
+MONGO_URI = mongodb://127.0.0.1/portfolio
+
+PORT = 9000
+
+
+//sample credential for you basic http auth
+PASS = pass
+USER = user
