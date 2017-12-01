@@ -4,16 +4,16 @@
         <span v-if="showSuccessMessage = false">{{ showMessage }}</span>
         <b-row v-if="showCheater">
             <b-col sm="6" md="4" v-for="cheat of cheaters" :key="cheat._id">
-                <b-card v-tooltip.top="{content: cheat.description, delay: 2000}">
+                <b-card v-tooltip="{content: cheat.description, delay: 2000}">
                     <div slot="header">
-                        {{ cheat.title }}
+                        {{ cheat.title | capitalize }}
                         <b-badge variant="success" class="float-right">{{ cheat.name }}</b-badge>
                         <a href="#"><b-badge variant="error" class="float-right" @click="deleteCheater(cheat._id, $event)"><i class="fa fa-trash-o"></i></b-badge></a>
                         <a href="#"><b-badge variant="warning" class="float-right" @click="editCheater(cheat, $event)"><i class="fa fa-edit"></i></b-badge></a>
                     </div>
-                    <code>{{ cheat.code }}</code>
+                    <pre>{{ cheat.code }}</pre>
                     <div slot="footer">
-                        {{ cheat.description }}
+                        {{ cheat.description | capitalize }}
                     </div>
                 </b-card>
             </b-col>
@@ -61,7 +61,6 @@
             </b-row>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -73,7 +72,7 @@
                 cheaters: '',
                 deleteMessageShow: false,
                 deletedMessage: 'Success deleting cheater!..',
-                showMessage: 'Success Updating Cheater',
+                showEditMessage: 'Success Updating Cheater',
                 editForm: false,
                 showCheater: true,
                 title: '',
@@ -131,7 +130,6 @@
                 this.code = cheat.code
                 this.name = cheat.name
                 this.id = cheat._id
-                console.log(cheat._id, 'id of edited')
             },
             submit () {
                 this.axios.post('cheats/editvueform', {
@@ -144,7 +142,7 @@
                 .then((response) => {
                     console.log(response.data, 'response')
                     this.editForm = false
-                    this.deleteMessageShow = true
+                    this.showEditMessage = true
                     setTimeout(() => {
                         this.$router.push('/dashboard')
                     }, 1000)
@@ -159,3 +157,10 @@
         }
     }
 </script>
+<style media="screen">
+    pre {
+        color: #d7e0e4;
+        background-color: #1b1b1c;
+        padding: 10px;
+    }
+</style>

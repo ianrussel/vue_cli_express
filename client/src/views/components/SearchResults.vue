@@ -8,15 +8,17 @@
             <span v-if="showSuccessMessage = false">{{ showMessage }}</span>
             <b-row v-if="showCheater">
                 <b-col sm="6" md="4" v-for="cheat of cheaters" :key="cheat._id">
-                    <b-card>
+                    <b-card v-tooltip="{content: cheat.description, delay: 2000}">
                         <div slot="header">
-                            {{ cheat.title }}
+                            {{ cheat.title | capitalize }}
                             <b-badge variant="success" class="float-right">{{ cheat.name }}</b-badge>
                             <a href="#"><b-badge variant="error" class="float-right" @click="deleteCheat(cheat._id, $event)"><i class="fa fa-trash-o"></i></b-badge></a>
                             <a href="#"><b-badge variant="warning" class="float-right" @click="editCheater(cheat, $event)"><i class="fa fa-edit"></i></b-badge></a>
                         </div>
-                        <code>{{ cheat.code }}</code>
-                        <span>{{ cheat.description }}</span>
+                        <pre>{{ cheat.code }}</pre>
+                        <div slot="footer">
+                        	{{ cheat.description | capitalize }}
+                    	</div>
                     </b-card>
                 </b-col>
             </b-row>
@@ -146,5 +148,10 @@
     .search {
         border-color: #e4e5e6;
         background-color: #ffffff;
+    }
+    pre {
+        color: #d7e0e4;
+        background-color: #1b1b1c;
+        padding: 10px;
     }
 </style>

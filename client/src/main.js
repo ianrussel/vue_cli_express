@@ -15,6 +15,12 @@ Vue.use(Tooltip)
 
 Vue.prototype.bus = new Vue()
 Vue.prototype.axios = Axios
+
+Vue.filter('capitalize', (value) => {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+})
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
