@@ -4,7 +4,7 @@
         <span v-if="showSuccessMessage = false">{{ showMessage }}</span>
         <b-row v-if="showCheater">
             <b-col sm="6" md="4" v-for="cheat of cheaters" :key="cheat._id">
-                <b-card>
+                <b-card v-tooltip.top="{content: cheat.description, delay: 2000}">
                     <div slot="header">
                         {{ cheat.title }}
                         <b-badge variant="success" class="float-right">{{ cheat.name }}</b-badge>
@@ -12,7 +12,9 @@
                         <a href="#"><b-badge variant="warning" class="float-right" @click="editCheater(cheat, $event)"><i class="fa fa-edit"></i></b-badge></a>
                     </div>
                     <code>{{ cheat.code }}</code>
-                    <span>{{ cheat.description }}</span>
+                    <div slot="footer">
+                        {{ cheat.description }}
+                    </div>
                 </b-card>
             </b-col>
         </b-row>
@@ -59,6 +61,7 @@
             </b-row>
         </div>
     </div>
+
 </template>
 
 <script>

@@ -12,7 +12,7 @@
                         <div slot="header">
                             {{ cheat.title }}
                             <b-badge variant="success" class="float-right">{{ cheat.name }}</b-badge>
-                            <a href="#"><b-badge variant="error" class="float-right" @click="deleteCheater(cheat._id, $event)"><i class="fa fa-trash-o"></i></b-badge></a>
+                            <a href="#"><b-badge variant="error" class="float-right" @click="deleteCheat(cheat._id, $event)"><i class="fa fa-trash-o"></i></b-badge></a>
                             <a href="#"><b-badge variant="warning" class="float-right" @click="editCheater(cheat, $event)"><i class="fa fa-edit"></i></b-badge></a>
                         </div>
                         <code>{{ cheat.code }}</code>
@@ -66,6 +66,7 @@
     </div>
 </template>
 <script>
+    import { getAll, deleteCheater } from '../cheat.js'
     export default {
         name: 'search-results',
         data () {
@@ -75,63 +76,33 @@
                 showCheater: false,
                 deleteMessageShow: false,
                 deletedMessage: 'Success deleting cheater!..',
-                showMessage: 'Success Updating Cheater'
+                showMessage: 'Success Updating Cheater',
+                editForm: false
             }
         },
         methods: {
             submitSearch (event) {
                 event.preventDefault()
-                console.log(event.target.value, 'target')
                 this.message = event.target.value
-                this.getAll()
+                this.editForm = false
+                this.get()
             },
-            getAll () {
-                this.axios.get('/cheats/searchCheater', {
+            get () {
+                this.getAll('/cheats/searchCheater', {
                     params: {
-                        name: this.message.trim()
-                    }
-                })
-                .then((response) => {
-                    // this.bus.$emit('clicked-nav-item', response.data)
-                    this.showCheater = true
-                    this.cheaters = response.data
-                })
-                .catch((error) => {
-                    console.log(error, 'err')
-                })
+                       name: this.message.trim()
+                   }
+               }, this.showCheater, this.cheaters)
             },
-            deleteCheater (id, event) {
+            deleteCheat (id, event) {
                 event.preventDefault()
                 let options = {
                     html: false,
                     loader: true
                 }
-                this.$dialog.confirm('Please confirm to continue', options)
-                    .then((dialog) => {
-                        console.log('it will be deleted')
-                        this.delete(id)
-                        this.deleteMessageShow = true
-                        const pos = this.cheaters.map(elem => elem._id).indexOf(id)
-                        this.cheaters.splice(pos, 1)
-                        setTimeout(() => {
-                            dialog.close()
-                            this.deleteMessageShow = false
-                        }, 500)
-                    })
-                    .catch(() => {
-                        console.log('cancelled')
-                    })
-            },
-            delete (id) {
-                this.axios.post('/cheats/deleteCheater', {
-                    id: id
-                })
-                .then((response) => {
-                    console.log(response, 'deleted baby')
-                })
-                .catch((error) => {
-                    console.log(error.toString())
-                })
+                let message = 'Please confirm to continue'
+                const url = 'cheats/deleteCheater'
+                this.deleteCheater(id, message, options, this.deleteMessageShow, this.cheaters, url, {id: id})
             },
             editCheater (cheat, event) {
                 event.preventDefault()
@@ -142,7 +113,6 @@
                 this.code = cheat.code
                 this.name = cheat.name
                 this.id = cheat._id
-                console.log(cheat._id, 'id of edited')
             },
             submitEdit () {
                 this.axios.post('cheats/editvueform', {
@@ -166,7 +136,9 @@
             },
             cancel () {
                 this.$router.push('/dashboard')
-            }
+            },
+            getAll,
+            deleteCheater
         }
     }
 </script>

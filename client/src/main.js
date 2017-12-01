@@ -6,9 +6,12 @@ import BootstrapVue from 'bootstrap-vue'
 import App from './App'
 import router from './router'
 import VuejsDialog from 'vuejs-dialog'
+import Tooltip from 'vue-directive-tooltip'
+import 'vue-directive-tooltip/css/index.css'
 
 Vue.use(BootstrapVue)
 Vue.use(VuejsDialog)
+Vue.use(Tooltip)
 
 Vue.prototype.bus = new Vue()
 Vue.prototype.axios = Axios
