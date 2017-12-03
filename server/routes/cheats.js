@@ -4,11 +4,14 @@ const express = require('express');
 
 const router = express.Router();
 
-const  basicAuth = require('basic-auth');
+const basicAuth = require('basic-auth');
 const password = process.env.PASS;
 const username = process.env.USER;
 
-var auth = function (req, res, next) {
+const jwt = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
+
+const auth = function (req, res, next) {
     function unauthorized(res) {
         res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
         return res.sendStatus(401);
@@ -28,6 +31,20 @@ var auth = function (req, res, next) {
         return unauthorized(res);
     };
 };
+
+const checkJwt = jwt({
+    secret: jwksRsa.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: `https://ianrussel.auth0.com/.well-known/jwks.json`
+    }),
+  
+    // Validate the audience and the issuer.
+    audience: 'https://ianrussel.auth0.com/api/v2/',
+    issuer: `https://ianrussel.auth0.com/`,
+    algorithms: ['RS256']
+});
 /******************************
 require our cheat controller
 ******************************/
@@ -55,12 +72,12 @@ router.get('/getcheaternames', cheat_controller.getcheaternames);
 /****************************
 delete cheater
 ****************************/
-router.post('/deleteCheater', auth, cheat_controller.deleteCheater);
+router.post('/deleteCheater', checkJwt, cheat_controller.deleteCheater);
 
 /***************************
 edit cheater
 ****************************/
-router.post('/editvueform',auth, cheat_controller.editCheater);
+router.post('/editvueform', cheat_controller.editCheater);
 
 /****************************
 search cheater

@@ -57,6 +57,8 @@
 		"fs": "0.0.1-security",
 		"html-webpack-plugin": "2.30.1",
 		"http-auth": "^3.2.3",
+		"jshint": "^2.9.5",
+		"jwks-rsa": "^1.2.1",
 		"moment": "^2.19.1",
 		"mongoose": "^4.12.3",
 		"morgan": "^1.9.0",

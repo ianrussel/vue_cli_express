@@ -8,7 +8,7 @@
                 <hr class="transparent mx-3 my-0">
                 <Callout variant="warning" class="m-0 py-3">
                     <div class="avatar float-right">
-                        <img src="static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                        <img src="/static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                     </div>
                     <div>Meeting with <strong>Lucas</strong></div>
                     <small class="text-muted mr-3"><i class="icon-calendar"></i>&nbsp; 1 - 3pm</small>
@@ -17,7 +17,7 @@
                 <hr class="mx-3 my-0">
                 <Callout variant="info" class="m-0 py-3">
                     <div class="avatar float-right">
-                        <img src="static/img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                        <img src="/static/img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                     </div>
                     <div>Skype with <strong>Megan</strong></div>
                     <small class="text-muted mr-3"><i class="icon-calendar"></i>&nbsp; 4 - 5pm</small>
@@ -34,19 +34,19 @@
                     <small class="text-muted"><i class="icon-home"></i>&nbsp; creativeLabs HQ </small>
                     <div class="avatars-stack mt-2">
                         <div class="avatar avatar-xs">
-                            <img src="static/img/avatars/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="/static/img/avatars/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                         <div class="avatar avatar-xs">
-                            <img src="static/img/avatars/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="/static/img/avatars/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                         <div class="avatar avatar-xs">
-                            <img src="static/img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="/static/img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                         <div class="avatar avatar-xs">
-                            <img src="static/img/avatars/5.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="/static/img/avatars/5.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                         <div class="avatar avatar-xs">
-                            <img src="static/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="/static/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                     </div>
                 </Callout>
@@ -63,25 +63,25 @@
                     <small class="text-muted"><i class="icon-home"></i>&nbsp; creativeLabs HQ </small>
                     <div class="avatars-stack mt-2">
                         <div class="avatar avatar-xs">
-                            <img src="static/img/avatars/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="/static/img/avatars/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                         <div class="avatar avatar-xs">
-                            <img src="static/img/avatars/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="/static/img/avatars/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                         <div class="avatar avatar-xs">
-                            <img src="static/img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="/static/img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                         <div class="avatar avatar-xs">
-                            <img src="static/img/avatars/5.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="/static/img/avatars/5.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                         <div class="avatar avatar-xs">
-                            <img src="static/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="/static/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                         <div class="avatar avatar-xs">
-                            <img src="static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="/static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                         <div class="avatar avatar-xs">
-                            <img src="static/img/avatars/8.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="/static/img/avatars/8.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                         </div>
                     </div>
                 </Callout>
@@ -92,7 +92,7 @@
                     <div class="message">
                         <div class="py-3 pb-5 mr-3 float-left">
                             <div class="avatar">
-                                <img src="static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="/static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                                 <b-badge variant="success" class="avatar-status" ></b-badge>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                     <div class="message">
                         <div class="py-3 pb-5 mr-3 float-left">
                             <div class="avatar">
-                                <img src="static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="/static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                                 <b-badge variant="success" class="avatar-status" ></b-badge>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                     <div class="message">
                         <div class="py-3 pb-5 mr-3 float-left">
                             <div class="avatar">
-                                <img src="static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="/static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                                 <b-badge variant="success" class="avatar-status" ></b-badge>
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                     <div class="message">
                         <div class="py-3 pb-5 mr-3 float-left">
                             <div class="avatar">
-                                <img src="static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="/static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                                 <b-badge variant="success" class="avatar-status" ></b-badge>
                             </div>
                         </div>
@@ -152,7 +152,7 @@
                     <div class="message">
                         <div class="py-3 pb-5 mr-3 float-left">
                             <div class="avatar">
-                                <img src="static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                <img src="/static/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                                 <b-badge variant="success" class="avatar-status" ></b-badge>
                             </div>
                         </div>

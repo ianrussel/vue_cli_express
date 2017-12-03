@@ -31,14 +31,14 @@ const cors = require('cors');
 const fs = require('fs');
 const morgan = require('morgan');
 
+const app = express();
+
+app.use(history());
+
 const cheat = require('./routes/cheats');
 const index = require('./routes/index');
 const users = require('./routes/users');
 
-
-const app = express();
-
-app.use(history());
 /********************************
 connect to database
 ********************************/

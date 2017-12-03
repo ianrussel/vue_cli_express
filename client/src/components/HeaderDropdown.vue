@@ -1,7 +1,7 @@
 <template>
     <b-nav-item-dropdown right no-caret>
         <template slot="button-content">
-            <img src="static/img/avatars/1.jpg" class="img-avatar" alt="ianrusseladem">
+            <img src="/static/img/avatars/1.jpg" class="img-avatar" alt="ianrusseladem">
         </template>
         <b-dropdown-header tag="div" class="text-center"><strong>Account</strong></b-dropdown-header>
         <b-dropdown-item><i class="fa fa-envelope-o"></i> Messages<b-badge variant="success">{{itemsCount}}</b-badge></b-dropdown-item>

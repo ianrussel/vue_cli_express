@@ -4,12 +4,16 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <b-link class="navbar-brand" to="#">Cheats</b-link>
+        <button class="btn btn-danger log" v-show="isLoggedIn()" @click="handleLogout()">Log out </button>
+        <button class="btn btn-info log" v-show="!isLoggedIn()" @click="handleLogin()">Log In</button>
+        <!-- <button class="btn btn-danger log" @click="handleLogout()">Log out </button>
+        <button class="btn btn-info log" @click="handleLogin()">Log In</button> -->
         <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" @click="sidebarToggle">
             <span class="navbar-toggler-icon"></span>
         </button>
         <b-navbar-nav class="d-md-down-none">
             <b-nav-item class="px-3">Dashboard</b-nav-item>
-            <b-nav-item class="px-3">User</b-nav-item>
+            <b-nav-item class="px-3">Users</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
             <HeaderDropdown/>
@@ -17,6 +21,7 @@
     </header>
 </template>
 <script>
+    import { isLoggedIn, login, logout } from '../utils/auth'
     import HeaderDropdown from './HeaderDropdown.vue'
 
     export default {
@@ -40,6 +45,15 @@
             asideToggle (e) {
                 e.preventDefault()
                 document.body.classList.toggle('aside-menu-hidden')
+            },
+            handleLogin () {
+                login()
+            },
+            handleLogout () {
+                logout()
+            },
+            isLoggedIn () {
+                return isLoggedIn()
             }
         }
     }

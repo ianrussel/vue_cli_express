@@ -4,6 +4,7 @@ import Router from 'vue-router'
 // Containers
 import Full from '@/containers/Full'
 
+import Callback from '@/components/callback'
 // Views
 // import Dashboard from '@/views/Dashboard'
 // import Charts from '@/views/Charts'
@@ -23,7 +24,7 @@ import Register from '@/views/pages/Register'
 Vue.use(Router)
 
 export default new Router({
-    mode: 'hash', // Demo is living in GitHub.io, so required!
+    mode: 'history', // Demo is living in GitHub.io, so required!
     linkActiveClass: 'open active',
     scrollBehavior: () => ({ y: 0 }),
     routes: [
@@ -69,6 +70,15 @@ export default new Router({
                     ]
                 }
             ]
+        },
+        {
+            path: '/callback',
+            component: Callback
+        },
+        {
+            path: '/components/search-results',
+            redirect: '/components/search-results',
+            component: SearchResults
         },
         {
             path: 'components/cheater',
