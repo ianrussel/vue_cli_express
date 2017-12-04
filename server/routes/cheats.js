@@ -8,6 +8,9 @@ const  basicAuth = require('basic-auth');
 const password = process.env.PASS;
 const username = process.env.USER;
 
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
+
 var auth = function (req, res, next) {
     function unauthorized(res) {
         res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
@@ -28,6 +31,18 @@ var auth = function (req, res, next) {
         return unauthorized(res);
     };
 };
+const authCheck = jwt({
+    secret: jwks.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: "https://cheatsheet.auth0.com/.well-known/jwks.json"
+    }),
+    // This is the identifier we set when we created the API
+    audience: 'vue_cli',
+    issuer: "https://cheatsheet.auth0.com/",
+    algorithms: ['RS256']
+});
 /******************************
 require our cheat controller
 ******************************/
@@ -60,7 +75,7 @@ router.post('/deleteCheater', auth, cheat_controller.deleteCheater);
 /***************************
 edit cheater
 ****************************/
-router.post('/editvueform',auth, cheat_controller.editCheater);
+router.post('/editvueform',authCheck, cheat_controller.editCheater);
 
 /****************************
 search cheater
