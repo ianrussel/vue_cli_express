@@ -69,6 +69,7 @@
 </template>
 <script>
     import { getAll, deleteCheater } from '../cheat.js'
+    import { getAccessToken } from '../../utils/auth.js'
     export default {
         name: 'search-results',
         data () {
@@ -83,6 +84,9 @@
             }
         },
         methods: {
+            getAccessToken () {
+                return this.getAccessToken()
+            },
             submitSearch (event) {
                 event.preventDefault()
                 this.message = event.target.value
@@ -109,7 +113,6 @@
             editCheater (cheat, event) {
                 event.preventDefault()
                 this.editForm = true
-                this.showCheater = false
                 this.title = cheat.title
                 this.description = cheat.description
                 this.code = cheat.code
@@ -122,7 +125,8 @@
                     description: this.description,
                     code: this.code,
                     name: this.name,
-                    id: this.id
+                    id: this.id,
+                    Authorization: `Bearer ${getAccessToken()}`
                 })
                 .then((response) => {
                     console.log(response.data, 'response')

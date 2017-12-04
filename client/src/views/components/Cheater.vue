@@ -64,6 +64,7 @@
 </template>
 
 <script>
+    import { getAccessToken } from '../../utils/auth.js'
     export default {
         name: 'cheater',
         data () {
@@ -86,6 +87,7 @@
             this.bus.$on('clicked-nav-item', (item) => {
                 this.cheaters = item
             })
+            console.log(this.getAccessToken(), 'this is access token')
         },
         methods: {
             deleteCheater (id, event) {
@@ -112,7 +114,8 @@
             },
             delete (id) {
                 this.axios.post('/cheats/deleteCheater', {
-                    id: id
+                    id: id,
+                    Authorization: `Bearer ${getAccessToken()}`
                 })
                 .then((response) => {
                     console.log(response, 'deleted baby')
@@ -153,7 +156,8 @@
             },
             cancel () {
                 this.$router.push('/dashboard')
-            }
+            },
+            getAccessToken
         }
     }
 </script>

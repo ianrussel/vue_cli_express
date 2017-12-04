@@ -1,21 +1,33 @@
 import decode from 'jwt-decode'
-// import axios from 'axios'
 import auth0 from 'auth0-js'
 import Router from 'vue-router'
-// import Auth0Lock from 'auth0-lock'
 const ID_TOKEN_KEY = 'id_token'
 const ACCESS_TOKEN_KEY = 'access_token'
 
-const CLIENT_ID = '3La2V6dU3mONmlm0GKnGaY7Mqub30zEH'
-const CLIENT_DOMAIN = 'cheatsheet.auth0.com'
+const CLIENT_ID = '51re13he1en9TTW0JsLVCPYlwuTQAgmS'
+const CLIENT_DOMAIN = 'ianrussel.auth0.com'
 const REDIRECT = 'http://localhost:8081/callback'
 const SCOPE = 'full_access'
 const AUDIENCE = 'vue_cli'
 
-var auth = new auth0.WebAuth({
+const auth = new auth0.WebAuth({
     clientID: CLIENT_ID,
     domain: CLIENT_DOMAIN
 })
+
+export function shit () {
+    auth.parseHash(window.location.hash, function (err, authResult) {
+        if (err) {
+          return console.log(err)
+        }
+        auth.client.userInfo(authResult.accessToken, function (err, user) {
+            if (err) {
+                console.log(err)
+            }
+            console.log(user, 'hello')
+        })
+    })
+}
 
 export function login () {
     auth.authorize({

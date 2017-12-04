@@ -19,6 +19,7 @@ import Page404 from '@/views/pages/Page404'
 import Page500 from '@/views/pages/Page500'
 import Login from '@/views/pages/Login'
 import Register from '@/views/pages/Register'
+
 // callback
 
 import Callback from '@/components/callback'
@@ -72,6 +73,15 @@ export default new Router({
                     ]
                 }
             ]
+        },
+        {
+            path: '/callback',
+            component: Callback
+        },
+        {
+            path: '/components/search-results',
+            redirect: '/components/search-results',
+            component: SearchResults
         },
         {
             path: 'components/cheater',

@@ -26,8 +26,11 @@ export function deleteCheater (id, message, options, deleteMessageShow, cheaters
 }
 
 export function deleteHer (url, param) {
-    axios.post(url, param)
+    console.log(param, 'fuck param')
     .then((response) => {
+        if (response) {
+            console.log(response, 'deleted babys')
+        }
         console.log(response, 'deleted baby')
     })
     .catch((error) => {
