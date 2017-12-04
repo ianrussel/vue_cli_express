@@ -8,10 +8,10 @@ export function getAll (url, param, showCheater, cheaters) {
     })
 }
 
-export function deleteCheater (id, message, options, deleteMessageShow, cheaters, url, param) {
+export function deleteCheater (id, message, options, deleteMessageShow, cheaters, url, data, headers) {
     this.$dialog.confirm(message, options)
         .then((dialog) => {
-            deleteHer(url, param)
+            deleteHer(url, data, headers)
             deleteMessageShow = true
             const pos = cheaters.map(elem => elem._id).indexOf(id)
             cheaters.splice(pos, 1)
@@ -25,8 +25,10 @@ export function deleteCheater (id, message, options, deleteMessageShow, cheaters
         })
 }
 
-export function deleteHer (url, param) {
-    console.log(param, 'fuck param')
+export function deleteHer (url, data, headers) {
+    console.log(data, 'data animal')
+    console.log(headers, 'headers animal')
+    axios.post(url, data, headers)
     .then((response) => {
         if (response) {
             console.log(response, 'deleted babys')
@@ -34,6 +36,6 @@ export function deleteHer (url, param) {
         console.log(response, 'deleted baby')
     })
     .catch((error) => {
-        console.log(error.toString())
+        console.log(error.toString(), 'fuck')
     })
 }

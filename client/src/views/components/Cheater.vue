@@ -113,10 +113,14 @@
                     })
             },
             delete (id) {
-                this.axios.post('/cheats/deleteCheater', {
-                    id: id,
-                    Authorization: `Bearer ${getAccessToken()}`
-                })
+                console.log(`Bearer ${getAccessToken()}`, 'get access token funcl')
+                const headers = {
+                    headers: {Authorization: `Bearer ${getAccessToken()}`}
+                }
+                const data = {
+                    id: id
+                }
+                this.axios.post('/cheats/deleteCheater', data, headers)
                 .then((response) => {
                     console.log(response, 'deleted baby')
                 })

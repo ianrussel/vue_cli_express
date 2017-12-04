@@ -83,9 +83,12 @@
                 editForm: false
             }
         },
+        mounted () {
+            this.getAccessTokens()
+        },
         methods: {
-            getAccessToken () {
-                return this.getAccessToken()
+            getAccessTokens () {
+                getAccessToken()
             },
             submitSearch (event) {
                 event.preventDefault()
@@ -101,14 +104,17 @@
                }, this.showCheater, this.cheaters)
             },
             deleteCheat (id, event) {
+                console.log(getAccessToken(), 'access tokens when delete is submitted')
                 event.preventDefault()
                 let options = {
                     html: false,
                     loader: true
                 }
                 let message = 'Please confirm to continue'
-                const url = 'cheats/deleteCheater'
-                this.deleteCheater(id, message, options, this.deleteMessageShow, this.cheaters, url, {id: id})
+                const url = '/cheats/deleteCheater'
+                const data = {id: id}
+                const headers = {headers: {Authorization: `Bearer ${getAccessToken()}`}}
+                this.deleteCheater(id, message, options, this.deleteMessageShow, this.cheaters, url, data, headers)
             },
             editCheater (cheat, event) {
                 event.preventDefault()
@@ -144,7 +150,8 @@
                 this.$router.push('/dashboard')
             },
             getAll,
-            deleteCheater
+            deleteCheater,
+            getAccessToken
         }
     }
 </script>

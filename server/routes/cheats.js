@@ -8,8 +8,7 @@ const basicAuth = require('basic-auth');
 const password = process.env.PASS;
 const username = process.env.USER;
 
-const jwt = require('express-jwt');
-const jwksRsa = require('jwks-rsa');
+const auth0 =  require('../auth/auth.js')
 
 const auth = function (req, res, next) {
     function unauthorized(res) {
@@ -32,19 +31,6 @@ const auth = function (req, res, next) {
     };
 };
 
-const checkJwt = jwt({
-    secret: jwksRsa.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: `https://ianrussel.auth0.com/.well-known/jwks.json`
-    }),
-
-    // Validate the audience and the issuer.
-    audience: 'https://ianrussel.auth0.com/api/v2/',
-    issuer: `https://ianrussel.auth0.com/`,
-    algorithms: ['RS256']
-});
 /******************************
 require our cheat controller
 ******************************/
@@ -72,7 +58,8 @@ router.get('/getcheaternames', cheat_controller.getcheaternames);
 /****************************
 delete cheater
 ****************************/
-router.post('/deleteCheater', checkJwt, cheat_controller.deleteCheater);
+//router.post('/deleteCheater', auth0([]), cheat_controller.deleteCheater);
+router.post('/deleteCheater', auth, cheat_controller.deleteCheater);
 
 /***************************
 edit cheater

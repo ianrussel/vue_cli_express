@@ -13,7 +13,6 @@
 /***********************
  load dotenv
 ***********************/
-
 require('dotenv').config();
 const history = require('connect-history-api-fallback');
 const express = require('express');
@@ -34,6 +33,7 @@ const morgan = require('morgan');
 const app = express();
 
 app.use(history());
+app.use(cors());
 
 const cheat = require('./routes/cheats');
 const index = require('./routes/index');

@@ -1,8 +1,8 @@
 <template>
     <button class="sidebar-minimizer" type="button" @click="sidebarMinimize();brandMinimize()"></button>
 </template>
-<script>
 
+<script>
     export default {
         name: 'sidebar-minimizer',
         methods: {

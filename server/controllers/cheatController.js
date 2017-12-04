@@ -84,12 +84,12 @@ exports.getcheaternames = function(req, res, next) {
 delete cheater
 **********************************/
 exports.deleteCheater = function(req, res, next) {
-    console.log(req.body.id, 'id');
+    console.log(req.body, 'tai')
     Cheaters.findByIdAndRemove(req.body.id, function(err) {
         if(err) {
             return next(err);
         }
-        res.json("success");
+        res.json(req.body);
     })
 }
 

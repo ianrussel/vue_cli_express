@@ -64,6 +64,7 @@ export function getIdToken () {
 }
 
 export function getAccessToken () {
+    console.log(localStorage.getItem(ACCESS_TOKEN_KEY), 'access_token from getAccesstoken function')
     return localStorage.getItem(ACCESS_TOKEN_KEY)
 }
 

@@ -1,7 +1,5 @@
 <template>
     <header class="app-header navbar">
-        <button class="btn btn-danger log" v-show="isLoggedIn()" @click="handleLogout()">Log out </button>
-        <button class="btn btn-info log" v-show="!isLoggedIn()" @click="handleLogin()">Log In</button>
         <button class="navbar-toggler mobile-sidebar-toggler d-lg-none" type="button" @click="mobileSidebarToggle">
             <span class="navbar-toggler-icon"></span>
         </button>
