@@ -4,10 +4,6 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <b-link class="navbar-brand" to="#">Cheats</b-link>
-        <button class="btn btn-danger log" v-show="isLoggedIn()" @click="handleLogout()">Log out </button>
-        <button class="btn btn-info log" v-show="!isLoggedIn()" @click="handleLogin()">Log In</button>
-        <!-- <button class="btn btn-danger log" @click="handleLogout()">Log out </button>
-        <button class="btn btn-info log" @click="handleLogin()">Log In</button> -->
         <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" @click="sidebarToggle">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -16,17 +12,30 @@
             <b-nav-item class="px-3">Users</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
-            <HeaderDropdown/>
+            <HeaderDropdown></HeaderDropdown>
         </b-navbar-nav>
     </header>
 </template>
 <script>
-    import { isLoggedIn, login, logout } from '../utils/auth'
+    import { isLoggedIn, userRole } from '../utils/auth'
     import HeaderDropdown from './HeaderDropdown.vue'
+
     export default {
         name: 'header',
+        data () {
+            return {
+                roles: ''
+            }
+        },
         components: {
             HeaderDropdown
+        },
+        mounted () {
+            if (isLoggedIn()) {
+                this.getUserRole()
+            }
+            console.log(process.env.NODE_ENV, 'env')
+            console.log(process.env.CLIENTID, 'client id')
         },
         methods: {
             sidebarToggle (e) {
@@ -45,14 +54,13 @@
                 e.preventDefault()
                 document.body.classList.toggle('aside-menu-hidden')
             },
-            handleLogin () {
-                login()
-            },
-            handleLogout () {
-                logout()
-            },
-            isLoggedIn () {
-                return isLoggedIn()
+            // get the current user role
+            getUserRole () {
+                userRole().then((result) => {
+                    this.role = result
+                }).catch((err) => {
+                    console.log(err.toString())
+                })
             }
         }
     }

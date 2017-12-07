@@ -6,6 +6,11 @@
 
     export default {
         name: '',
+        data () {
+            return {
+                key: ''
+            }
+        },
         mounted () {
             this.$nextTick(() => {
                 setAccessToken()

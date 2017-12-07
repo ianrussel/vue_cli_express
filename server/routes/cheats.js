@@ -47,7 +47,7 @@ router.get('/showAllCheater', cheat_controller.index);
 add new cheats
 ******************************/
 
-router.post('/addvueform', auth,cheat_controller.create_cheat);
+router.post('/addvueform', cheat_controller.create_cheat);
 
 /*****************************
 get names from cheaters
@@ -58,13 +58,13 @@ router.get('/getcheaternames', cheat_controller.getcheaternames);
 /****************************
 delete cheater
 ****************************/
-//router.post('/deleteCheater', auth0([]), cheat_controller.deleteCheater);
-router.post('/deleteCheater', auth, cheat_controller.deleteCheater);
+router.post('/deleteCheater', cheat_controller.deleteCheater);
+// router.post('/deleteCheater', auth, cheat_controller.deleteCheater);
 
 /***************************
 edit cheater
 ****************************/
-router.post('/editvueform', cheat_controller.editCheater);
+router.post('/editvueform' ,cheat_controller.editCheater);
 
 /****************************
 search cheater

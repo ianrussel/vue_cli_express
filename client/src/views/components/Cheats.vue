@@ -11,7 +11,7 @@
                             {{ cheat }}
                         </router-link>
                     </b-col>
-                </b-row><!--/.row-->
+                </b-row>
             </b-card-body>
         </b-card>
     </div>

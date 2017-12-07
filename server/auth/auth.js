@@ -20,7 +20,7 @@ const tokenGuard = jwt({
     // Validate the audience and the issuer.
     audience: AUDIENCE,
     issuer: ISSUER,
-    algorithms: ['RS256']
+    algorithms: ['HS256']
 });
 
 module.exports = function (scopes) {

@@ -64,7 +64,7 @@
 </template>
 
 <script>
-    import { getAccessToken } from '../../utils/auth.js'
+    import { getAccessToken, isLoggedIn, userRole } from '../../utils/auth.js'
     export default {
         name: 'cheater',
         data () {
@@ -80,14 +80,17 @@
                 description: '',
                 code: '',
                 name: '',
-                id: ''
+                id: '',
+                role: ''
             }
         },
         mounted () {
             this.bus.$on('clicked-nav-item', (item) => {
                 this.cheaters = item
             })
-            console.log(this.getAccessToken(), 'this is access token')
+            if (isLoggedIn()) {
+                this.getUserRole()
+            }
         },
         methods: {
             deleteCheater (id, event) {
@@ -95,6 +98,10 @@
                 let options = {
                     html: false,
                     loader: true
+                }
+                if (!isLoggedIn() || this.role !== 'admin') {
+                    alert('oh holy cow, you have not enough admin rights!')
+                    return
                 }
                 this.$dialog.confirm('Please confirm to continue', options)
                     .then((dialog) => {
@@ -139,13 +146,21 @@
                 this.id = cheat._id
             },
             submit () {
-                this.axios.post('cheats/editvueform', {
+                if (!isLoggedIn() || this.role !== 'admin') {
+                    alert('oh holy cow, you have not enough admin rights!')
+                    return
+                }
+                const headers = {
+                    headers: {Authorization: `Bearer ${getAccessToken()}`}
+                }
+                const data = {
                     title: this.title,
                     description: this.description,
                     code: this.code,
                     name: this.name,
                     id: this.id
-                })
+                }
+                this.axios.post('/cheats/editvueform', data, headers)
                 .then((response) => {
                     console.log(response.data, 'response')
                     this.editForm = false
@@ -160,6 +175,14 @@
             },
             cancel () {
                 this.$router.push('/dashboard')
+            },
+            // get the current user role
+            getUserRole () {
+                userRole().then((result) => {
+                    this.role = result
+                }).catch((err) => {
+                    console.log(err.toString())
+                })
             },
             getAccessToken
         }

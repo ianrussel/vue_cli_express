@@ -69,7 +69,7 @@
 </template>
 <script>
     import { getAll, deleteCheater } from '../cheat.js'
-    import { getAccessToken } from '../../utils/auth.js'
+    import { getAccessToken, isLoggedIn, userRole } from '../../utils/auth.js'
     export default {
         name: 'search-results',
         data () {
@@ -80,11 +80,15 @@
                 deleteMessageShow: false,
                 deletedMessage: 'Success deleting cheater!..',
                 showMessage: 'Success Updating Cheater',
-                editForm: false
+                editForm: false,
+                role: ''
             }
         },
         mounted () {
             this.getAccessTokens()
+            if (isLoggedIn()) {
+                this.getUserRole()
+            }
         },
         methods: {
             getAccessTokens () {
@@ -104,7 +108,10 @@
                }, this.showCheater, this.cheaters)
             },
             deleteCheat (id, event) {
-                console.log(getAccessToken(), 'access tokens when delete is submitted')
+                if (!isLoggedIn() || this.role !== 'admin') {
+                   alert('oh holy cow, you have not enough admin rights!')
+                   return
+                }
                 event.preventDefault()
                 let options = {
                     html: false,
@@ -126,6 +133,10 @@
                 this.id = cheat._id
             },
             submitEdit () {
+                if (!isLoggedIn() || this.role !== 'admin') {
+                   alert('oh holy cow, you have not enough admin rights!')
+                   return
+                }
                 this.axios.post('cheats/editvueform', {
                     title: this.title,
                     description: this.description,
@@ -148,6 +159,13 @@
             },
             cancel () {
                 this.$router.push('/dashboard')
+            },
+            getUserRole () {
+                userRole().then((result) => {
+                    this.role = result
+                }).catch((err) => {
+                    console.log(err.toString())
+                })
             },
             getAll,
             deleteCheater,

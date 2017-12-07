@@ -26,8 +26,6 @@ export function deleteCheater (id, message, options, deleteMessageShow, cheaters
 }
 
 export function deleteHer (url, data, headers) {
-    console.log(data, 'data animal')
-    console.log(headers, 'headers animal')
     axios.post(url, data, headers)
     .then((response) => {
         if (response) {

@@ -17,6 +17,7 @@
         "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
     },
     "dependencies": {
+        "EventEmitter": "^1.0.0",
         "auth0-js": "^8.11.3",
         "axios": "^0.17.1",
         "bootstrap": "4.0.0-beta.2",
@@ -24,6 +25,7 @@
         "chart.js": "2.7.1",
         "concurrently": "^3.5.1",
         "font-awesome": "^4.7.0",
+        "fs": "0.0.1-security",
         "jwt-decode": "^2.2.0",
         "simple-line-icons": "^2.4.1",
         "vue": "2.5.6",
