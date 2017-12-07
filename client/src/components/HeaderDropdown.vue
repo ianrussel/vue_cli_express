@@ -2,7 +2,7 @@
     <b-nav-item-dropdown right no-caret>
         <template slot="button-content">
             <span v-show="isLoggedIn()">hello {{user.nickname}} </span><img :src="user.picture" class="img-avatar" :alt="user.nickname"  v-show="isLoggedIn()">
-            <button class="btn btn btn-primary btn-margin" v-show="!isLoggedIn()" @click="handleLogin()">Login</button>
+            <button class="btn btn btn-primary img-avatar" v-show="!isLoggedIn()" @click="handleLogin()">Login</button>
         </template>
         <b-dropdown-header tag="div" class="text-center" v-show="isLoggedIn()"><strong>Account</strong></b-dropdown-header>
         <b-dropdown-item v-show="isLoggedIn()"><i class="fa fa-envelope-o"></i> Messages<b-badge variant="success">{{itemsCount}}</b-badge></b-dropdown-item>

@@ -64,7 +64,7 @@
 </template>
 
 <script>
-    import { getAccessToken, isLoggedIn, userRole } from '../../utils/auth.js'
+    import { getAccessToken, isLoggedIn, userRole, login } from '../../utils/auth.js'
     export default {
         name: 'cheater',
         data () {
@@ -99,7 +99,10 @@
                     html: false,
                     loader: true
                 }
-                if (!isLoggedIn() || this.role !== 'admin') {
+                if (!isLoggedIn()) {
+                    this.handleLogin()
+                }
+                if (isLoggedIn() && this.role !== 'admin') {
                     alert('oh holy cow, you have not enough admin rights!')
                     return
                 }
@@ -146,7 +149,10 @@
                 this.id = cheat._id
             },
             submit () {
-                if (!isLoggedIn() || this.role !== 'admin') {
+                if (!isLoggedIn()) {
+                    this.handleLogin()
+                }
+                if (isLoggedIn() && this.role !== 'admin') {
                     alert('oh holy cow, you have not enough admin rights!')
                     return
                 }
@@ -183,6 +189,9 @@
                 }).catch((err) => {
                     console.log(err.toString())
                 })
+            },
+            handleLogin () {
+                return login()
             },
             getAccessToken
         }

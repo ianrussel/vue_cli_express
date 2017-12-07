@@ -69,7 +69,7 @@
 </template>
 <script>
     import { getAll, deleteCheater } from '../cheat.js'
-    import { getAccessToken, isLoggedIn, userRole } from '../../utils/auth.js'
+    import { getAccessToken, isLoggedIn, userRole, login } from '../../utils/auth.js'
     export default {
         name: 'search-results',
         data () {
@@ -108,9 +108,12 @@
                }, this.showCheater, this.cheaters)
             },
             deleteCheat (id, event) {
-                if (!isLoggedIn() || this.role !== 'admin') {
-                   alert('oh holy cow, you have not enough admin rights!')
-                   return
+                if (!isLoggedIn()) {
+                   this.handleLogin()
+                }
+                if (isLoggedIn() && this.role !== 'admin') {
+                    alert('oh holy cow, you have not enough admin rights!')
+                    return
                 }
                 event.preventDefault()
                 let options = {
@@ -133,9 +136,12 @@
                 this.id = cheat._id
             },
             submitEdit () {
-                if (!isLoggedIn() || this.role !== 'admin') {
-                   alert('oh holy cow, you have not enough admin rights!')
-                   return
+                if (!isLoggedIn()) {
+                   this.handleLogin()
+                }
+                if (isLoggedIn() && this.role !== 'admin') {
+                    alert('oh holy cow, you have not enough admin rights!')
+                    return
                 }
                 this.axios.post('cheats/editvueform', {
                     title: this.title,
@@ -166,6 +172,9 @@
                 }).catch((err) => {
                     console.log(err.toString())
                 })
+            },
+            handleLogin () {
+                return login()
             },
             getAll,
             deleteCheater,
