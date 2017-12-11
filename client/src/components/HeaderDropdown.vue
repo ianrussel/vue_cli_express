@@ -42,7 +42,6 @@
             userInfo () {
                 userInfo().then((result) => {
                     this.user = result
-                    console.log(this.user, 'user info')
                     const roles = this.user['https://ianrussel:auth0:com/roles']
                     this.roles = roles[0]
                     // set the role of current user

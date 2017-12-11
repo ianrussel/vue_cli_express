@@ -104,7 +104,7 @@
                 }
                 if (isLoggedIn() && this.role !== 'admin') {
                     alert('oh holy cow, you have not enough admin rights!')
-                    return
+                    return false
                 }
                 this.$dialog.confirm('Please confirm to continue', options)
                     .then((dialog) => {
@@ -154,7 +154,7 @@
                 }
                 if (isLoggedIn() && this.role !== 'admin') {
                     alert('oh holy cow, you have not enough admin rights!')
-                    return
+                    return false
                 }
                 const headers = {
                     headers: {Authorization: `Bearer ${getAccessToken()}`}
@@ -186,6 +186,7 @@
             getUserRole () {
                 userRole().then((result) => {
                     this.role = result
+                    console.log()
                 }).catch((err) => {
                     console.log(err.toString())
                 })

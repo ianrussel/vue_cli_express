@@ -21,8 +21,10 @@ import Login from '@/views/pages/Login'
 import Register from '@/views/pages/Register'
 
 // callback
-
 import Callback from '@/components/callback'
+
+// Users
+import Users from '@/views/components/users'
 
 Vue.use(Router)
 
@@ -69,14 +71,15 @@ export default new Router({
                             path: 'search-results',
                             name: 'SearchResults',
                             component: SearchResults
+                        },
+                        {
+                            path: 'users',
+                            name: 'Users',
+                            component: Users
                         }
                     ]
                 }
             ]
-        },
-        {
-            path: '/callback',
-            component: Callback
         },
         {
             path: '/components/search-results',

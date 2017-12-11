@@ -7,7 +7,7 @@
                         <strong>Add New </strong> Cheater &nbsp; &nbsp;
                         <span v-if="success" class="success"><strong>{{ successMessage }}</strong></span>
                     </div>
-                    <form action="#" id ="addvueform" class="form-horizontal" v-on:submit.prevent="submit">
+                    <form action="#" id ="addvueform" class="form-horizontal" v-on:submit.prevent=" submitForm">
                     <b-form-fieldset
                         description="Let us know the title."
                         label="Title"
@@ -64,6 +64,7 @@
 </template>
 
 <script>
+    import { getAccessToken, isLoggedIn, userRole, login } from '../../utils/auth.js'
     export default {
         name: 'forms',
         data () {
@@ -78,8 +79,21 @@
         },
         mounted () {
             this.getCheaterNames()
+            if (isLoggedIn()) {
+                this.getUserRole()
+            }
         },
         methods: {
+            submitForm () {
+                if (!isLoggedIn()) {
+                    this.handleLogin()
+                }
+                if (isLoggedIn() && this.role !== 'admin') {
+                    alert('oh holy cow, you have not enough admin rights!')
+                    return false
+                }
+                this.submit()
+            },
             submit () {
                 this.axios.post('/cheats/addvueform', {
                     title: this.title,
@@ -117,7 +131,20 @@
                 .catch((error) => {
                     console.log(error, 'err')
                 })
-            }
+            },
+            // get the current user role
+            getUserRole () {
+                userRole().then((result) => {
+                    this.role = result
+                    console.log()
+                }).catch((err) => {
+                    console.log(err.toString())
+                })
+            },
+            handleLogin () {
+                return login()
+            },
+            getAccessToken
         }
     }
 </script>
