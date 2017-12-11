@@ -96,7 +96,8 @@
         },
         mounted () {
             if (isLoggedIn()) {
-                this.getAllUsers()
+                // this.getAllUsers()
+                console.log('you are logged')
             }
         },
         methods: {
