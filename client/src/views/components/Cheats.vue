@@ -18,6 +18,7 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         name: 'cheats',
         data () {
@@ -31,7 +32,7 @@
         },
         methods: {
             getCheaterNames () {
-                this.axios.get('/cheats/getcheaternames')
+                axios.get('/cheats/getcheaternames')
                 .then((response) => {
                     this.cheats = response.data
                 })
@@ -45,7 +46,7 @@
                 this.getAll()
             },
             getAll () {
-                this.axios.get('/cheats/showAllCheater', {
+                axios.get('/cheats/showAllCheater', {
                     params: {
                         name: this.cheater.trim()
                     }

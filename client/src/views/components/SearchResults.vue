@@ -70,6 +70,7 @@
 <script>
     import { getAll, deleteCheater } from '../cheat.js'
     import { getAccessToken, isLoggedIn, userRole, login } from '../../utils/auth.js'
+    import axios from 'axios'
     export default {
         name: 'search-results',
         data () {
@@ -143,7 +144,7 @@
                     alert('oh holy cow, you have not enough admin rights!')
                     return
                 }
-                this.axios.post('cheats/editvueform', {
+                axios.post('cheats/editvueform', {
                     title: this.title,
                     description: this.description,
                     code: this.code,

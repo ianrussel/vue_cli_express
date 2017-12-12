@@ -13,6 +13,7 @@
 
 <script>
     import { isLoggedIn, getAccessToken } from '../../utils/auth.js'
+    import axios from 'axios'
     /**
     * Randomize array element order in-place.
     * Using Durstenfeld shuffle algorithm.
@@ -121,7 +122,7 @@
                         'Content-Type': 'application/json'
                     }
                 }
-                this.axios.get(url, {
+                axios.get(url, {
                     withCredentials: true,
                     params: {
                         q: 'email.raw:"ian.russel@yahoo.com"',

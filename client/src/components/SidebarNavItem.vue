@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         name: 'sidebar-nav-item',
         data () {
@@ -35,7 +36,7 @@
                 this.getAll()
             },
             getAll () {
-                this.axios.get('/cheats/showAllCheater', {
+                axios.get('/cheats/showAllCheater', {
                     params: {
                         name: this.cheater.trim()
                     }

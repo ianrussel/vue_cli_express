@@ -52,14 +52,6 @@ export function userRole () {
         })
     })
 }
-export function getUserRole (role) {
-    userRole().then((result) => {
-        role = result
-        console.log()
-    }).catch((err) => {
-        console.log(err.toString())
-    })
-}
 export function logout () {
     clearIdToken()
     clearAccessToken()

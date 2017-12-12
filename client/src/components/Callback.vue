@@ -1,4 +1,5 @@
 <template>
+    <h1>Yati ka</h1>
 </template>
 
 <script>

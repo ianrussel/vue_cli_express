@@ -64,7 +64,10 @@
 </template>
 
 <script>
-    import { getAccessToken, isLoggedIn, userRole, login } from '../../utils/auth.js'
+    import { getAccessToken, isLoggedIn, login, userRole } from '../../utils/auth.js'
+    import { getCheaterNames } from '../cheat.js'
+    import { getNames } from '../../_nav.js'
+    import axios from 'axios'
     export default {
         name: 'forms',
         data () {
@@ -74,11 +77,14 @@
                 code: '',
                 name: '',
                 success: '',
-                cheats: ''
+                cheats: '',
+                submitUrl: '/cheats/addvueform'
             }
         },
         mounted () {
-            this.getCheaterNames()
+            getCheaterNames().then((response) => {
+                this.cheats = response
+            })
             if (isLoggedIn()) {
                 this.getUserRole()
             }
@@ -87,27 +93,29 @@
             submitForm () {
                 if (!isLoggedIn()) {
                     this.handleLogin()
-                }
-                if (isLoggedIn() && this.role !== 'admin') {
+                } else if (isLoggedIn() && this.role !== 'admin') {
                     alert('oh holy cow, you have not enough admin rights!')
                     return false
+                } else {
+                    this.submit()
                 }
-                this.submit()
             },
             submit () {
-                this.axios.post('/cheats/addvueform', {
+                axios.post('/cheats/addvueform', {
                     title: this.title,
                     description: this.description,
                     code: this.code,
                     name: this.name
                 })
                 .then((response) => {
+                    console.log(response, 'from add vue')
                     this.title = ''
                     this.description = ''
                     this.code = ''
                     this.name = ''
                     this.successMessage = '...Success Adding Cheater!'
                     this.success = true
+                    getNames()
                     setTimeout(() => {
                         this.success = false
                     }, 1000)
@@ -122,16 +130,16 @@
                 this.code = ''
                 this.name = ''
             },
-            getCheaterNames () {
-                this.axios.get('/cheats/getcheaternames')
-                .then((response) => {
-                    this.cheats = response.data
-                    console.log(this.cheats, 'these are cheater names')
-                })
-                .catch((error) => {
-                    console.log(error, 'err')
-                })
-            },
+            // getCheaterNames () {
+            //     axios.get('/cheats/getcheaternames')
+            //     .then((response) => {
+            //         this.cheats = response.data
+            //         console.log(this.cheats, 'these are cheater names')
+            //     })
+            //     .catch((error) => {
+            //         console.log(error, 'err')
+            //     })
+            // },
             // get the current user role
             getUserRole () {
                 userRole().then((result) => {
@@ -144,7 +152,8 @@
             handleLogin () {
                 return login()
             },
-            getAccessToken
+            getAccessToken,
+            getCheaterNames
         }
     }
 </script>

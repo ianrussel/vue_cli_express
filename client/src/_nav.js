@@ -1,29 +1,22 @@
-import axios from 'axios'
-var cheats
-var it = []
-let myFirstPromise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve(axios.get('/cheats/getcheaternames')
-            .then((response) => {
-                cheats = response.data
-                return cheats
-            })
-            .catch((error) => {
-                console.log(error, 'err')
-            }))
-    }, 250)
-})
+import { getCheaterNames } from './views/cheat.js'
 
-myFirstPromise.then((successMessage) => {
-    for (const [index, value] of successMessage.entries()) {
-        it.push({
-            name: value,
-            url: '/components/cheater',
-            icon: 'icon-puzzle',
-            index: index
-        })
-    }
-})
+let it = []
+
+export function getNames () {
+    it.length = 0
+    getCheaterNames().then((response) => {
+        const tai = [...new Set(response)]
+        for (let [index, value] of tai.entries()) {
+            it.push({
+                name: value,
+                url: '/components/cheater',
+                icon: 'icon-puzzle',
+                index: index
+            })
+        }
+    })
+}
+
 export default {
     items: [
         {

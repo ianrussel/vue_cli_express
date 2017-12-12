@@ -19,7 +19,7 @@
 <script>
     import { isLoggedIn, userRole } from '../utils/auth'
     import HeaderDropdown from './HeaderDropdown.vue'
-
+    import { getNames } from '../_nav.js'
     export default {
         name: 'header',
         data () {
@@ -34,6 +34,7 @@
             if (isLoggedIn()) {
                 this.getUserRole()
             }
+            getNames()
         },
         methods: {
             sidebarToggle (e) {

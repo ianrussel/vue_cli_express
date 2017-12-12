@@ -65,6 +65,8 @@
 
 <script>
     import { getAccessToken, isLoggedIn, userRole, login } from '../../utils/auth.js'
+    import axios from 'axios'
+    import { getNames } from '../../_nav.js'
     export default {
         name: 'cheater',
         data () {
@@ -130,9 +132,10 @@
                 const data = {
                     id: id
                 }
-                this.axios.post('/cheats/deleteCheater', data, headers)
+                axios.post('/cheats/deleteCheater', data, headers)
                 .then((response) => {
                     console.log(response, 'deleted baby')
+                    getNames()
                 })
                 .catch((error) => {
                     console.log(error.toString())
@@ -166,7 +169,7 @@
                     name: this.name,
                     id: this.id
                 }
-                this.axios.post('/cheats/editvueform', data, headers)
+                axios.post('/cheats/editvueform', data, headers)
                 .then((response) => {
                     console.log(response.data, 'response')
                     this.editForm = false
